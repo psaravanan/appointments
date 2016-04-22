@@ -1,0 +1,19 @@
+<h1>Appointments</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Date</th>
+    <th>From Time</th>
+    <th>To Time</th>
+  </tr>
+  <% @appointments.each do |f| %>
+    <tr>
+      <td><%=f.name%></td>
+      <td><%=f.email%></td>
+      <td><%=f.fromtime.strftime("%D")%></td>
+      <td><%=f.fromtime.strftime("%H:%M %p")%></td>
+      <td><%=f.totime.strftime("%H:%M %p")%></td>
+    </tr>
+  <% end %>
+</table>

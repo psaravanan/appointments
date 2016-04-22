@@ -4,35 +4,30 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">REQUEST APPOINTMENT...</h4>
+				<h4 class="modal-title">REQUEST APPOINTMENT</h4>
 			</div>
 			<div class="modal-body">
 
-				<%=form_for :appoint, url:appointment_index_path do |f|%>
-				<div id="date"></div>
-				<!-- <div id="default"></div> -->
-				<div class="field">
-					<%= f.label :Yourname%>
-					<%= f.text_field :name%>
-					</div><br>
-					<div class="field">	
-					<%= f.label :YourEmailaddress%>
-					<%= f.text_field :email%>
-					</div><br>
-				<div class="field">
-					<%= f.label :Fromtime%>
-					<%=f.time_field :fromtime%>
-
-				</div><br>
-				<%= hidden_field_tag :select_day %>
-				<div class="fied">
-					<%=f.label :Totime%>
-					<%=f.time_field :totime%>
-				</div><br>
+			<%=form_for :appoint, url:appointment_index_path do |f|%>
+        <div class="date_div_container">
+  				<div id="date" class="date_div"></div>
+  				<span><%=f.time_field :fromtime %></span>
+          <span> - </span>
+  				<span><%=f.time_field :totime %></span>
+        </div>
+        <div class="field">
+          <%= f.label "Your name: *" %><br>
+          <%= f.text_field :name, placeholder: "Name" %>
+        </div><br>
+        <div class="field"> 
+          <%= f.label "Your email address: *"%><br>
+          <%= f.text_field :email, placeholder: "Email" %>
+        </div><br>
+        <%= hidden_field_tag :select_day %>
 				</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<%= f.submit "REQUEST APPOINTMENT" , :class => "btn btn-primary"%>
+  			<div class="modal-footer">
+          <%= f.submit "REQUEST APPOINTMENT" , :class => "btn btn-primary pull-left"%>
+  				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">CANCEL</button>
 				</div>
 			<%end%>
 		</div><!-- /.modal-content -->

@@ -14,3 +14,28 @@
  *= require_self
  *= require fullcalendar
  */
+
+.date_div{
+  float: left;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+.date_div_container{
+  margin-bottom: 20px;
+}
+.field input{
+  width: 100%;
+}
+input{
+  padding: 5px 10px;
+}
+.modal-content{
+  padding: 10px;
+}
+td{
+  border: 1px solid gray;
+}
+table, tr, td{
+  margin: 10px !important;
+  padding: 10px 10px 10px 0 !important;
+}
