@@ -1,0 +1,68 @@
+<div id='calendar'></div>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">REQUEST APPOINTMENT...</h4>
+			</div>
+			<div class="modal-body">
+
+				<%=form_for :appoint, url:appointment_index_path do |f|%>
+				<div id="date"></div>
+				<!-- <div id="default"></div> -->
+				<div class="field">
+					<%= f.label :Yourname%>
+					<%= f.text_field :name%>
+					</div><br>
+					<div class="field">	
+					<%= f.label :YourEmailaddress%>
+					<%= f.text_field :email%>
+					</div><br>
+				<div class="field">
+					<%= f.label :Fromtime%>
+					<%=f.time_field :fromtime%>
+
+				</div><br>
+				<%= hidden_field_tag :select_day %>
+				<div class="fied">
+					<%=f.label :Totime%>
+					<%=f.time_field :totime%>
+				</div><br>
+				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<%= f.submit "REQUEST APPOINTMENT" , :class => "btn btn-primary"%>
+				</div>
+			<%end%>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+      dayClick: function(date) {
+      		//string date=[date.format()];
+        $('#date').html(date.format());
+        //$('#appoint_fromtime','appoint_totime').html
+        var x =  date.format();
+         $('#select_day').val(x);	
+       // console.log(x);
+
+        //$('#default').html(date.format());
+        
+        $('#myModal').modal();
+    },
+       events: '/appointment'
+});
+  
+});
+</script>
+
+<!-- $(function(){
+    var input = prompt("Please enter a number");
+}); -->

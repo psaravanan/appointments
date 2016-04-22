@@ -1,0 +1,16 @@
+<h1> Appointment</h1>
+<table>
+	<tr>
+		<th>name</th>
+		<th>email</th>
+		<th>FromStart</th>
+		<th>TO</th>
+	</tr>
+	<% @event.each do |f| %>
+	<tr>
+		<td><%=f.name%></td>
+		<td><%=f.email%></td>
+		<td><%=f.fromtime%></td>
+		<td><%=f.totime%></td>
+	</tr>
+</table>
