@@ -20,6 +20,8 @@ class AppointmentController < ApplicationController
  	    @appoint.fromtime  = tmp.to_datetime
  	    @appoint.totime = tmp1.to_datetime
  	    @appoint.save
+      #@user = @appoint.email
+      UserMailer.mailer_send(@appoint).deliver_now
   	    redirect_to root_path
   end
 
