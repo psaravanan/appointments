@@ -25,6 +25,7 @@ class AppointmentController < ApplicationController
   	    redirect_to root_path
   end
 
+
   private
  def appointment_params
  	params.require(:appoint).permit(:name,:email,:fromtime,:totime,:select_day)

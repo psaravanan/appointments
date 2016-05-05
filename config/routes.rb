@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
+  
+
   #get 'appointment/index'
 resources :appointment
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
+  # Settings Controller
+  # get 'settings', to: 'setting#setting'
+  # post 'setting',to: 'setting#create'
+  resources :settings
+  # 
+   get 'available',to: 'settings#availableappointment'
    get 'appointments' => 'appointment#appointments'
    root 'appointment#new'
 

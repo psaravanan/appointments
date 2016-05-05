@@ -1,0 +1,23 @@
+<h1>Settings</h1>
+<%= form_for @setting, url: setting_path(@setting), method: :put do |f| %>
+<p>
+    <%= f.label :Email %>
+    <%= f.text_field :email %>
+  </p>
+
+<p>
+    <%= f.label :interval %>
+    <%= f.select :interval, options_for_select((1..24).map{|n| [n.to_s+" Hour",n]} )%>
+   </p>
+   
+   <p>
+    <%= f.label :Available %>
+    <%= f.select :available,options_for_select((1..10).map{|n|n} ) %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
+
