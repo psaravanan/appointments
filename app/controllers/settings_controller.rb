@@ -19,7 +19,10 @@ class SettingsController < ApplicationController
 		@setting.update_attributes(setting_params)
 		redirect_to  settings_path
 	end
+
 	def availableappointment
+		@setting = Setting.last
+	
 		
 	end
  

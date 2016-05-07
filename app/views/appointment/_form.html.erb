@@ -1,0 +1,21 @@
+<%=form_for :appoint, url:appointment_index_path do |f|%>
+        <div class="date_div_container">
+  				<span><%=f.time_field :fromtime %></span>
+          <span> - </span>
+  				<span><%=f.time_field :totime %></span>
+        </div>
+        <div class="field">
+          <%= f.label "Your name: *" %><br>
+          <%= f.text_field :name, placeholder: "Name" %>
+        </div><br>
+        <div class="field"> 
+          <%= f.label "Your email address: *"%><br>
+          <%= f.text_field :email, placeholder: "Email" %>
+        </div><br>
+        <%= hidden_field_tag :select_day %>
+				</div>
+  			<div class="modal-footer">
+          <%= f.submit "REQUEST APPOINTMENT" , :class => "btn btn-primary pull-left"%>
+  				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">CANCEL</button>
+				</div>
+			<%end%>

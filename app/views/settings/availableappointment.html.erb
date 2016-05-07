@@ -1,48 +1,44 @@
-<h1>Settings</h1>
-<div id='calendar'></div>
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">AVAILABLE APPOINTMENT</h4>
-      </div>
-      <div class="modal-body">
-      <% (0..20).each do |time| %>
-	<%= (Time.now + time.hour ).strftime('%I:%M %P')%><%= "-"%>
-	<%= (Time.now + time.hour + 1.hour ).strftime('%I:%M %P')%>
-	<input type="text" placeholder=" 3 Timeslot Available"></input>
-	<button> Booked Available </button>
-	<br>
-<% end %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="col-md-12">
+				<%= params[:date] if params[:date].present? %>
+			</div>
+				<% start_time = Time.parse(params[:date] + " 08:00:00")%>
+				<% end_time = Time.parse(params[:date] + " 18:00:00")%>
+				<% interval_time = @setting.present? ? @setting.interval.to_i : 1 %>
 
-   <div id="date" class="date_div"></div>
+				<table class="col-md-12">
+					<% (start_time.to_i..end_time.to_i).step(interval_time.hour) do |time| %>
+						<tbody class="col-md-10 col-md-offset-1">
+						<td class="col-md-2"><%= (Time.at time + time.hour).strftime('%I:%M %P') %>
+							<%= (Time.at time + time.hour + interval_time.hour).strftime('%I:%M %P') %></td>
+						<td class="col-md-7">
+							<input type="text" class="col-md-12" placeholder=" <%= "#{@setting.available}" %> Timeslot Available" style="border:none;"></input>
+						</td>
+						<td class="col-md-3">
+							<button type="button" class="col-md-12 btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal<%=time%>">Booked Available</button>
+						</td>
+						</tbody>
+						<div class="modal fade" id="myModal<%=time%>" role="dialog">
+							<div class="modal-dialog">
 
-<script type="text/javascript">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Modal Header</h4>
+									</div>
+									<div class="modal-body">
+										<%= render "appointment/form"%>
+									</div>
+								</div>
 
-$(document).ready(function() {
+							</div>
+						</div>
 
-    // page is now ready, initialize the calendar...
-
-    $('#calendar').fullCalendar({
-       dayClick: function(date) {
-          //string date=[date.format()];
-        $('#date').html(date.format());
-        //$('#appoint_fromtime','appoint_totime').html
-        var x =  date.format();
-         $('#select_day').val(x); 
-       // console.log(x);
-       
-        //$('#default').html(date.format());
-        
-        $('#myModal').modal();
-    },
-       events: '/appointment'
-        // put your options and callbacks here
-    })
-
-});
-</script>
-<div id='calendar'></div>
-
-
+					<% end %>
+				</table>
+		</div>
+	</div>
+</div>
