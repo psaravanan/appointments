@@ -1,8 +1,10 @@
 <%=form_for :appoint, url:appointment_index_path do |f|%>
         <div class="date_div_container">
-  				<span><%=f.time_field :fromtime %></span>
-          <span> - </span>
-  				<span><%=f.time_field :totime %></span>
+        <%#= "#{date.to_date.strftime("%b %d, %Y") + ' ' + from}"%>
+  				<%=f.hidden_field :fromtime, value: from, readonly: true if from.present?%>
+  				<%=f.hidden_field :totime, value: to ,readonly: true if to.present? %>
+          <%=f.hidden_field :date, value: date ,readonly: true if to.present? %>
+          <span><%= "#{date.to_date.strftime("%b %d, %Y")} #{from} - #{to}"%></span>
         </div>
         <div class="field">
           <%= f.label "Your name: *" %><br>

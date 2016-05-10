@@ -9,7 +9,8 @@
 			<div class="modal-body">
 
   		  <div id="date" class="date_div"></div>
-      <%= render "form"%>
+      <%#= render partial: "form", locals: {from: "", to: "",date: ""}%>
+
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -25,7 +26,7 @@
         $('#date').html(date.format());
         //$('#appoint_fromtime','appoint_totime').html
         var x =  date.format();
-         $('#select_day').val(x);	
+         $('#date').val(x);	
        console.log(x);
 
         //$('#default').html(date.format());

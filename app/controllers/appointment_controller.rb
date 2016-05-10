@@ -5,13 +5,15 @@ class AppointmentController < ApplicationController
   	
   end
   def create
-  	p'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
-  		p tmp = params[:select_day] + ' ' + params[:appoint][:fromtime]
-  	p'&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
+  	
+  		#p tmp = params[:select_day] + ' ' + params[:appoint][:fromtime]
+  	
+  		#p tmp1 = params[:select_day]+ ' '+ params[:appoint][:totime]
 
-  		p tmp1 = params[:select_day]+ ' '+ params[:appoint][:totime]
+  		p tmp = params[:appoint][:date] + ' ' + params[:appoint][:fromtime]
+    
+      p tmp1 = params[:appoint][:date] + ' '+ params[:appoint][:totime]
 
-  		p'################################################'
   		p  tmp.to_datetime
   		p  tmp1.to_datetime
   	    @appoint = Appoint.create

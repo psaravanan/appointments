@@ -10,11 +10,16 @@
 
 				<table class="col-md-12">
 					<% (start_time.to_i..end_time.to_i).step(interval_time.hour) do |time| %>
+          <%# from =  DateTime.parse(params[:date] + " " + "8")%>
+					<%# to =   DateTime.parse(params[:date]+ " " + "8")%>
+						<%from = (Time.at time + time.hour).strftime('%I:%M %P')%>
+						<% to = (Time.at time + time.hour + interval_time.hour).strftime('%I:%M %P')  %>
 						<tbody class="col-md-10 col-md-offset-1">
-						<td class="col-md-2"><%= (Time.at time + time.hour).strftime('%I:%M %P') %>
-							<%= (Time.at time + time.hour + interval_time.hour).strftime('%I:%M %P') %></td>
+						<td class="col-md-2"><%= from %>
+							<%= to
+							 %></td>
 						<td class="col-md-7">
-							<input type="text" class="col-md-12" placeholder=" <%= "#{@setting.available}" %> Timeslot Available" style="border:none;"></input>
+							<input type="text" class="col-md-12" placeholder=" <%= "#{@setting.available}" if @setting.present?  %> Timeslot Available" style="border:none;"></input>
 						</td>
 						<td class="col-md-3">
 							<button type="button" class="col-md-12 btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal<%=time%>">Booked Available</button>
@@ -30,7 +35,7 @@
 										<h4 class="modal-title">Modal Header</h4>
 									</div>
 									<div class="modal-body">
-										<%= render "appointment/form"%>
+										<%= render partial: "appointment/form", locals: {from: from, to: to,date: params[:date]}%>
 									</div>
 								</div>
 

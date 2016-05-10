@@ -9,6 +9,8 @@ class SettingsController < ApplicationController
 	end
 
   def create
+
+
 		@setting = Setting.new(setting_params)
 		@setting.save
 		redirect_to  settings_path
@@ -21,9 +23,7 @@ class SettingsController < ApplicationController
 	end
 
 	def availableappointment
-		@setting = Setting.last
-	
-		
+		@setting = Setting.last		
 	end
  
 	private
